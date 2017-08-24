@@ -10,11 +10,14 @@
       <div *ngFor="let currentEquation of system.equations; let i = index">
         <div class="form-group">
           <div class="input-group">
-            <input class="form-control equation-container" placeholder="type equation here" type="text" name="equation"
+            <div class="form-control equation-container" id="{{'equation-' +i}}"
+            (keydown.Enter)="onEnter(i)"
+            ></div>
+            <!-- <input class="form-control equation-container" placeholder="type equation here" type="text" name="equation"
             [(ngModel)]="currentEquation.input" (keydown.Enter)="onEnter(i)"
             (keydown.ArrowUp)="onArrowUp(i)"
             (keydown.ArrowDown)="onArrowDown(i)"
-            (keydown.Backspace)="onDelete(i)">
+            (keydown.Backspace)="onDelete(i)"> -->
             <div class="input-group-btn">
               <button class="btn btn-danger" (click)="remove(i)">
                 <i class="fa fa-times" aria-hidden="true"></i>

@@ -1,12 +1,29 @@
-import { Component } from '@angular/core';
-import { System} from './system';
-import { Equation} from './equation'
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { System } from './system';
+import { Equation } from './equation';
+
+var Guppy = (window as any).Guppy;
+var $ = (window as any).$;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewChecked {
+  ngOnInit() {
+    Guppy.init_symbols(["https://cdn.rawgit.com/daniel3735928559/guppy/24d744fd/sym/symbols.json"]);
+  }
+  ngAfterViewChecked() {
+    $('.equation-container').each((i, e) => {
+      if (!$(e).data('has-guppy')) {
+        console.log('Guppy init', e);
+        new Guppy(e.id);
+        $(e).data('has-guppy', true);
+      }
+    });
+  }
+
   system = new System ([
     new Equation ('')
   ]);
