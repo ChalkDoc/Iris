@@ -1,34 +1,28 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { System } from './system';
 import { Equation } from './equation';
 
 var Guppy = (window as any).Guppy;
-var $ = (window as any).$;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, AfterViewChecked {
+export class AppComponent implements OnInit {
   ngOnInit() {
     Guppy.init_symbols(["https://cdn.rawgit.com/daniel3735928559/guppy/24d744fd/sym/symbols.json"]);
-  }
-  ngAfterViewChecked() {
-    $('.equation-container').each((i, e) => {
-      if (!$(e).data('has-guppy')) {
-        console.log('Guppy init', e);
-        new Guppy(e.id);
-        $(e).data('has-guppy', true);
-      }
-    });
   }
 
   system = new System ([
     new Equation ('')
   ]);
 
+// don't remove if only one euqation
   remove(i) {
+    if (this.system.equations.length < 2) {
+      return
+    }
     this.system.equations.splice(i,1);
   }
   onEnter(i) {
@@ -37,7 +31,9 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
   focus(i) {
     var element = document.querySelectorAll(".equation-container")[i] as HTMLElement;
-    element.focus();
+    if (element) {
+        element.focus();
+    }
   }
 
   onArrowUp(i) {
@@ -51,7 +47,7 @@ export class AppComponent implements OnInit, AfterViewChecked {
   }
 
   onDelete(i){
-    if (i == 0 || this.system.equations[i].input != '')
+    if (i == 0 || this.system.equations[i].input.trim() != '')
       return;
     this.system.equations.splice(i,1);
     setTimeout(() => this.focus(i-1),1);

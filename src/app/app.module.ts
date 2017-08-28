@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { GuppyInputComponent } from './guppy-input/guppy-input.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GuppyInputComponent
   ],
   imports: [
     BrowserModule,
