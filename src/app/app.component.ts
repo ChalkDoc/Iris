@@ -1,17 +1,28 @@
-import { Component } from '@angular/core';
-import { System} from './system';
-import { Equation} from './equation'
+import { Component, OnInit } from '@angular/core';
+import { System } from './system';
+import { Equation } from './equation';
+
+var Guppy = (window as any).Guppy;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  ngOnInit() {
+    Guppy.init_symbols(["https://cdn.rawgit.com/daniel3735928559/guppy/24d744fd/sym/symbols.json"]);
+  }
+
   system = new System ([
     new Equation ('')
   ]);
 
+// don't remove if only one euqation
   remove(i) {
+    if (this.system.equations.length < 2) {
+      return
+    }
     this.system.equations.splice(i,1);
   }
   onEnter(i) {
@@ -20,7 +31,9 @@ export class AppComponent {
   }
   focus(i) {
     var element = document.querySelectorAll(".equation-container")[i] as HTMLElement;
-    element.focus();
+    if (element) {
+        element.focus();
+    }
   }
 
   onArrowUp(i) {
@@ -34,7 +47,7 @@ export class AppComponent {
   }
 
   onDelete(i){
-    if (i == 0 || this.system.equations[i].input != '')
+    if (i == 0 || this.system.equations[i].input.trim() != '')
       return;
     this.system.equations.splice(i,1);
     setTimeout(() => this.focus(i-1),1);
