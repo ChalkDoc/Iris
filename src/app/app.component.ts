@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { System } from './system';
 import { Equation } from './equation';
 
+declare let d3: any;
+declare let functionPlot: any;
+
 var Guppy = (window as any).Guppy;
 
 @Component({
@@ -11,6 +14,19 @@ var Guppy = (window as any).Guppy;
 })
 export class AppComponent implements OnInit {
   ngOnInit() {
+
+    console.log( 'Onit' )
+    let ele = d3.selectAll('p')
+
+    ele.style('background-color', 'red')
+
+    functionPlot({
+      target: '#quadratic',
+      data:[{
+        fn: 'x=1'
+      }]
+    })
+    
     Guppy.init_symbols(["https://cdn.rawgit.com/daniel3735928559/guppy/24d744fd/sym/symbols.json"]);
   }
 
