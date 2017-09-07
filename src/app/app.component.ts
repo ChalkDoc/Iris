@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     functionPlot({
       target: '#quadratic',
       data:[{
-        fn: 'x=1'
+        fn: 'x=0'
       }]
     })
 
@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
   }
   onEnter(i) {
     this.system.equations.splice(i+1,0,new Equation(''));
+    console.log('hi')
     setTimeout(() => this.focus(i+1),1);
   }
   focus(i) {
@@ -55,6 +56,7 @@ export class AppComponent implements OnInit {
 
   onArrowUp(i) {
     this.system.equations[i]
+    console.log('arrowup')
     setTimeout(() => this.focus(i-1),1);
   }
 

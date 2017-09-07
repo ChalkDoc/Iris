@@ -31,7 +31,7 @@ export class GuppyInputComponent implements AfterViewInit {
         }
       }
     });
-    new GuppyOSK({"goto_tab":"functions"});
+    new GuppyOSK();
   }
 
 }
