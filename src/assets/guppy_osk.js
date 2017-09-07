@@ -1,9 +1,10 @@
-
 function GuppyOSK(config){
     var self = this;
     for(var gid in Guppy.instances){
-	var g = Guppy.instances[gid];
-	var f = function(guppy){
+  	var g = Guppy.instances[gid];
+    if (g.has_osk) continue;
+    g.has_osk = true;
+  	var f = function(guppy){
 	    guppy.backend.events.focus = function(c){
 		if(c.focused) self.attach(guppy);
 		else self.detach(guppy);
@@ -68,7 +69,7 @@ GuppyOSK.prototype.attach = function(guppy){
 	this.element = null;
 	this.guppy = null;
     }
-    
+
     var syms = guppy.backend.symbols;
     var osk = elt("div",{"class":"guppy_osk"});
     var sym_tabs = elt("div",{"class":"keys tabbed"});
@@ -170,7 +171,7 @@ GuppyOSK.prototype.attach = function(guppy){
 	click_listener(e, fn);
 	controls.appendChild(e);
     }
-    
+
     add_control("&larr;S", function(e){ e.preventDefault();guppy.backend.sel_left();guppy.render();});
     add_control("S&rarr;", function(e){ e.preventDefault();guppy.backend.sel_right();guppy.render();});
     add_control("cut", function(e){ e.preventDefault();guppy.backend.sel_cut();guppy.render();});
@@ -185,7 +186,7 @@ GuppyOSK.prototype.attach = function(guppy){
     add_control("&uarr;", function(e){ e.preventDefault();guppy.backend.up();guppy.render();});
     add_control("&darr;", function(e){ e.preventDefault();guppy.backend.down();guppy.render();});
     add_control("&rarr;", function(e){ e.preventDefault();guppy.backend.right();guppy.render();});
-    
+
     osk.appendChild(controls);
     document.body.appendChild(osk);
 

@@ -6,6 +6,7 @@ declare let d3: any;
 declare let functionPlot: any;
 
 var Guppy = (window as any).Guppy;
+console.log('A');
 
 @Component({
   selector: 'app-root',
@@ -26,7 +27,7 @@ export class AppComponent implements OnInit {
         fn: 'x=1'
       }]
     })
-    
+
     Guppy.init_symbols(["https://cdn.rawgit.com/daniel3735928559/guppy/24d744fd/sym/symbols.json"]);
   }
 
@@ -48,7 +49,7 @@ export class AppComponent implements OnInit {
   focus(i) {
     var element = document.querySelectorAll(".equation-container")[i] as HTMLElement;
     if (element) {
-        element.focus();
+        // element.focus();
     }
   }
 

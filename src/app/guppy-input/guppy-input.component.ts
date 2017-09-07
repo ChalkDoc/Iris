@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, AfterViewInit, ViewChild, NgZone } from '@angular/core';
 
-
+var GuppyOSK = (window as any).GuppyOSK;
 var Guppy = (window as any).Guppy;
 var $ = (window as any).$;
 
@@ -31,6 +31,7 @@ export class GuppyInputComponent implements AfterViewInit {
         }
       }
     });
+    new GuppyOSK({"goto_tab":"functions"});
   }
 
 }
