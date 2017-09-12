@@ -9,24 +9,25 @@
     <div class="col-md-4">
       <div *ngFor="let currentEquation of system.equations; let i = index">
         <guppy-input
-          (change)="currentEquation.input=$event"
+          (change)="change(i, $event)"
           (keydown.Enter)="onEnter(i)"
           (keydown.ArrowUp)="onArrowUp(i)"
           (keydown.ArrowDown)="onArrowDown(i)"
           (keydown.Backspace)="onDelete(i)"
+          (keydown.Escape)="unfocusAll()"
           (clickRemove) = "remove(i)">
         </guppy-input>
       </div>
-      <h6 style="color:#ccc">Press Enter to add new equation</h6>
+      <button class="btn btn-success" (click)="onAdd()" style="cursor: pointer;">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      </button>
+      <h6 style="color:#ccc; display: inline;">(or press Enter to add new equation)</h6>
     </div>
     <div class="col-md-8">
-
+      <div id="quadratic">
+      </div>
     </div>
 
 
   </div>
-</div>
-<p> Hello we are visible</p>
-
-<div id="quadratic">
 </div>

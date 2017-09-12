@@ -14,13 +14,14 @@ export class GuppyInputComponent implements AfterViewInit {
   @Output() change = new EventEmitter();
   @Output() clickRemove = new EventEmitter();
   guppy;
+  guppyId = "guppy-input-" + Math.floor(Math.random() * 1000000);
 
  // use ngZone for changes to be detectedx
   constructor(private ngZone: NgZone) { }
 
   ngAfterViewInit() {
     console.log(this.guppyContainer.nativeElement);
-    this.guppy = new Guppy(this.guppyContainer.nativeElement, {
+    this.guppy = new Guppy(this.guppyId, {
       events: {
         change: () => {
           if (this.guppy) {
@@ -28,6 +29,10 @@ export class GuppyInputComponent implements AfterViewInit {
               this.change.emit (this.guppy.backend.get_content("text"))
             });
           }
+        },
+        ready: () => {
+          // workaround for Guppy bug
+          Guppy.ready = true;
         }
       }
     });

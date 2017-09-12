@@ -6,7 +6,7 @@ declare let d3: any;
 declare let functionPlot: any;
 
 var Guppy = (window as any).Guppy;
-console.log('A');
+var $ = (window as any).$;
 
 @Component({
   selector: 'app-root',
@@ -14,8 +14,8 @@ console.log('A');
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  ngOnInit() {
 
+  ngOnInit() {
     console.log( 'Onit' )
     let ele = d3.selectAll('p')
 
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
       data:[{
         fn: 'x=0'
       }]
-    })
+    });
 
     Guppy.init_symbols(["https://cdn.rawgit.com/daniel3735928559/guppy/24d744fd/sym/symbols.json"]);
   }
@@ -35,8 +35,8 @@ export class AppComponent implements OnInit {
     new Equation ('')
   ]);
 
-// don't remove if only one euqation
   remove(i) {
+    // don't remove if only one euqation
     if (this.system.equations.length < 2) {
       return
     }
@@ -44,13 +44,21 @@ export class AppComponent implements OnInit {
   }
   onEnter(i) {
     this.system.equations.splice(i+1,0,new Equation(''));
-    console.log('hi')
     setTimeout(() => this.focus(i+1),1);
+  }
+  unfocusAll() {
+    $.each(Guppy.instances, (i, x) => x.deactivate());
+  }
+  onAdd() {
+    this.system.equations.push(new Equation(''));
+    setTimeout(() => this.focus(this.system.equations.length-1),1);
   }
   focus(i) {
     var element = document.querySelectorAll(".equation-container")[i] as HTMLElement;
-    if (element) {
-        // element.focus();
+    if (element && Guppy.instances[element.id]) {
+      var guppy = Guppy.instances[element.id];
+      this.unfocusAll();
+      guppy.activate();
     }
   }
 
@@ -72,4 +80,18 @@ export class AppComponent implements OnInit {
     setTimeout(() => this.focus(i-1),1);
   }
 
+  change(i, newInput) {
+    this.system.equations[i].input = newInput;
+    setTimeout(() => this.drawFunctions(), 1);
+  }
+
+  drawFunctions() {
+    var data = $.map(this.system.equations, (x) => ({
+      fn: x.input.trim()
+    }));
+    functionPlot({
+      target: '#quadratic',
+      data: data
+    });
+  }
 }
