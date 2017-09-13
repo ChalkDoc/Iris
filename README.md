@@ -29,3 +29,11 @@ Run `ng github-pages:deploy` to deploy to GitHub Pages.
 ## Further help
 
 To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+##  I deleted this from symbols.js (Modified the keyboard majorly - mind the commas) We need the operations tab, or else we can't do x<3 for instance: 
+
+
+       "_literal":[{"group":"greek",
+		"symbols":["alpha","beta","gamma","delta","epsilon","zeta","eta","theta","iota","kappa","lambda","mu","nu","xi","omicron","pi","rho","sigma","tau","upsilon","phi","chi","psi","omega","Gamma","Delta","Theta","Lambda","Xi","Pi","Sigma","Phi","Psi","Omega"]}]

@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
       }]
     });
 
-    Guppy.init_symbols(["https://cdn.rawgit.com/daniel3735928559/guppy/24d744fd/sym/symbols.json"]);
+    Guppy.init_symbols(["/assets/symbols.js"]);
   }
 
   system = new System ([
