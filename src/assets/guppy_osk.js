@@ -77,11 +77,20 @@
 		var tab_bar = elt("ul");
 		sym_tabs.appendChild(tab_bar);
 		var grouped = {"qwerty":[]};
-		var abc = "1234567890+-=\n\tqwertyuiop*/\n\t\tasdfghjkl.\n\t\t\tzxcvbnm "
+		var abc = "1234567890+-=\n\tqwertyuiop*/\n\t\tasdfghjkl.\n\t\t\tzxcvbnm@!&"
 		for(var i = 0; i < abc.length; i++){
 		if(abc[i] == "\n"){
 			grouped["qwerty"].push({"break":true});
 		}
+		else if(abc[i] == "@") {
+			grouped["qwerty"].push({"name": "cos", latex: "\cos"})
+		} 
+		else if(abc[i] == "!") {
+			grouped["qwerty"].push({"name": "sin", latex: "\sin"})
+		} 
+		else if(abc[i] == "&") {
+			grouped["qwerty"].push({"name": "tan", latex: "\ttan"})
+		} 
 		else if(abc[i] == "\t"){
 			grouped["qwerty"].push({"tab":true});
 		}
