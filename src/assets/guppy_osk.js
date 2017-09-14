@@ -84,13 +84,13 @@
 		}
 		else if(abc[i] == "@") {
 			grouped["qwerty"].push({"name": "cos", latex: "\cos"})
-		} 
+		}
 		else if(abc[i] == "!") {
 			grouped["qwerty"].push({"name": "sin", latex: "\sin"})
-		} 
+		}
 		else if(abc[i] == "&") {
 			grouped["qwerty"].push({"name": "tan", latex: "\ttan"})
-		} 
+		}
 		else if(abc[i] == "\t"){
 			grouped["qwerty"].push({"tab":true});
 		}
@@ -198,8 +198,12 @@
 		this.element = osk;
 	}
 	function saveSVG() {
+		// add xmlns attribute to make Chrome recognize file as SVG
+		// and display it instead of showing plain xml
+		$('svg').attr('xmlns', 'http://www.w3.org/2000/svg');
+
 		var svg = document.querySelector("svg").outerHTML;
-		// do magic that converts SVG to PNG :) 
+		// do magic that converts SVG to PNG :)
 
 		var svgBlob = new Blob([svg], {type:"image/svg+xml;charset=utf-8"});
 		var svgUrl = URL.createObjectURL(svgBlob);

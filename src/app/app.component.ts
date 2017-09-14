@@ -4,6 +4,7 @@ import { Equation } from './equation';
 
 declare let d3: any;
 declare let functionPlot: any;
+declare let saveSVG: any;
 
 var Guppy = (window as any).Guppy;
 var $ = (window as any).$;
@@ -104,5 +105,9 @@ export class AppComponent implements OnInit {
       target: '#quadratic',
       data: data
     });
+  }
+
+  saveSVG() {
+    saveSVG();
   }
 }
