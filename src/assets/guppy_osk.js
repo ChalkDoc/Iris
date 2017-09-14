@@ -197,3 +197,17 @@
 		this.guppy = guppy;
 		this.element = osk;
 	}
+	function saveSVG() {
+		var svg = document.querySelector("svg").outerHTML;
+		// do magic that converts SVG to PNG :) 
+
+		var svgBlob = new Blob([svg], {type:"image/svg+xml;charset=utf-8"});
+		var svgUrl = URL.createObjectURL(svgBlob);
+
+		var downloadLink = document.createElement("a");
+		downloadLink.href = svgUrl;
+		downloadLink.download = "newesttree.svg";
+		document.body.appendChild(downloadLink);
+		downloadLink.click();
+		document.body.removeChild(downloadLink);
+	}
