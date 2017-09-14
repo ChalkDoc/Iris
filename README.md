@@ -1,4 +1,4 @@
-# Chalkdoc
+# Chalkdoc Iris
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
 
@@ -22,6 +22,40 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 Before running the tests make sure you are serving the app via `ng serve`.
 
+##Prerequisites
+You will need the following things properly installed on your computer
+
+  * Git
+  * Node.js (with NPM)
+  * Angular2
+
+## Installation and Deployment
+   * git clone this repository - https://github.com/ahorod/chalkdoc-graphinator.git
+   * cd chalkdoc-graphinator
+   * npm install
+   * npm start
+   * navigate to http://localhost:4200/
+
+## User Interactivity
+  * Click on the initial input, the keyboard will appear.
+  * Use the keyboard to type in desired equation that you want graphed.
+  * Use the "download me" button to save a snapshot of the graph if desired.
+  * To change the size of the graph scroll with the mouse or drag the graph to change the view.
+  * Press enter or the "+" button to add another equation to your graph.
+
+## Developer Tips
+  * The graph were plotted with functionPlot https://github.com/mauriciopoppe/function-plot.git
+  * functionPlot uses D3 V 3.5.7
+  * Guppy is used to translate the input into a recognizable mathematical equation. https://github.com/daniel3735928559/guppy.git
+
+## Known Bugs
+  * Application cannot plot inequalty equations
+  * If 7 or more input fields are desired, guppy will overlap the keyboard
+
+## Future Goals
+  * Set the x and y axis
+  * Focus on one or more quadrant
+
 ## Deploying to GitHub Pages
 
 Run `ng github-pages:deploy` to deploy to GitHub Pages.
@@ -32,7 +66,7 @@ To get more help on the `angular-cli` use `ng help` or go check out the [Angular
 
 
 
-##  I deleted this from symbols.js (Modified the keyboard majorly - mind the commas) We need the operations tab, or else we can't do x<3 for instance: 
+##  I deleted this from symbols.js (Modified the keyboard majorly - mind the commas) We need the operations tab, or else we can't do x<3 for instance:
 
 
        "_literal":[{"group":"greek",
