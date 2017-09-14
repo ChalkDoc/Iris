@@ -1,33 +1,7 @@
 {
-    "norm":
-    {"output":{
-        "latex":"||{$1}||",
-        "text":"norm({$1})"},
-     "current":0,
-     "type":"norm",
-     "group":"functions",
-     "attrs":[{"delete":"1"}]
-    },
     
-    "text":
-    {"output":{
-        "latex":"\\text{{$1}}",
-        "text":"text({$1})"},
-     "current":0,
-     "type":"text",
-     "group":"editor",
-     "attrs":[{"mode":"text"}]
-    },
     
-    "sym_name":
-    {"output":{
-        "latex":"\\backslash\\texttt{{$1}}",
-        "text":"SYMBOL({$1})"},
-     "current":0,
-     "type":"symbol",
-     "group":"editor",
-     "attrs":[{"mode":"symbol"}]
-    },
+    
     
     "abs":
     {"output":{
@@ -126,50 +100,7 @@
      ]
     },
     
-    "int":
-    {"output":{
-        "latex":"\\displaystyle\\int{{$1}}d{$2}",
-        "small_latex":"\\int{{$1}}d{$2}",
-	"text":"integrate({$1},{$2})"},
-     "current":0,
-     "type":"indefinite_integral",
-     "group":"calculus",
-     "attrs":[
-	 {"delete":"1","name":"integrand"},
-	 {"delete":"1","bracket":"yes","name":"variable"}
-     ]
-    },
     
-    "defi":
-    {"output":{
-        "latex":"\\displaystyle\\int_{{$1}}^{{$2}}{$3}d{$4}",
-        "small_latex":"\\int_{{$1}}^{{$2}}{$3}d{$4}",
-	"text":"integrate({$3},{$4},{$1},{$2})"},
-     "current":0,
-     "type":"definite_integral",
-     "group":"calculus",
-     "attrs":[
-	 {"down":"1","up":"2","small":"yes","name":"lower_limit"},
-	 {"down":"1","up":"2","small":"yes","name":"upper_limit"},
-	 {"down":"1","up":"2","delete":"3","name":"integrand"},
-	 {"down":"1","up":"2","bracket":"yes","delete":"4","name":"variable"}
-     ]
-    },
-    
-    "deriv":
-    {"output":{
-        "latex":"\\displaystyle\\frac{d}{d{$1}}{$2}",
-        "small_latex":"\\frac{d}{d{$1}}{$2}",
-	"text":"diff({$2},{$1})"},
-     "current":0,
-     "type":"derivative",
-     "group":"calculus",
-     "attrs":[
-	 {"down":"1","up":"2","bracket":"yes","name":"function"},
-	 {"down":"1","up":"2","bracket":"yes","name":"variable"}
-     ]
-    },
-        
     "sum":
     {"output":{
         "latex":"\\displaystyle\\sum_{{$1}}^{{$2}}{$3}",
@@ -210,9 +141,6 @@
 	     "leq":{"latex":"\\leq","text":" <= "},
 	     "less":{"latex":"<","text":" < "},
 	     "geq":{"latex":"\\geq","text":" >= "},
-	     "greater":{"latex":">","text":" > "}}},
-	{"group":"qwerty",
-	 "symbols":{
-	     "infty":{"latex":"\\infty","text":" $infinity "}}}
+	     "greater":{"latex":">","text":" > "}}}
     ]
 }

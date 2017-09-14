@@ -51,6 +51,7 @@ You will need the following things properly installed on your computer
 ## Known Bugs
   * Application cannot plot inequalty equations
   * If 7 or more input fields are desired, guppy will overlap the keyboard
+  * EXCEPTION: Cannot read property 'lo' of undefined -> this is because when you call the function say COS() it has ('') nothing in the parameter and it runs it immediately to functionplot, we can add validation to stop this error. not a huge deal but it'd be nice to fix this. 
 
 ## Future Goals
   * Set the x and y axis
@@ -66,8 +67,105 @@ To get more help on the `angular-cli` use `ng help` or go check out the [Angular
 
 
 
-##  I deleted this from symbols.js (Modified the keyboard majorly - mind the commas) We need the operations tab, or else we can't do x<3 for instance:
+##  KEYBOARD tips: I deleted this from symbols.js (Modified the keyboard majorly - mind the commas) We need the operations tab, or else we can't do x<3 for instance:
 
+For reference you can access the full keyboard here: https://cdn.rawgit.com/daniel3735928559/guppy/24d744fd/examples/osk.html
 
-       "_literal":[{"group":"greek",
-		"symbols":["alpha","beta","gamma","delta","epsilon","zeta","eta","theta","iota","kappa","lambda","mu","nu","xi","omicron","pi","rho","sigma","tau","upsilon","phi","chi","psi","omega","Gamma","Delta","Theta","Lambda","Xi","Pi","Sigma","Phi","Psi","Omega"]}]
+Things I removed:
+1. Calculus tab
+2. Infinity button as it doesn't work / unknown reason.
+3. ||?|| Strange function not needed and floor function LL 
+4. 
+
+"norm":
+    {"output":{
+        "latex":"||{$1}||",
+        "text":"norm({$1})"},
+     "current":0,
+     "type":"norm",
+     "group":"functions",
+     "attrs":[{"delete":"1"}]
+    },
+
+    "_literal":[{"group":"greek",
+    "symbols":["alpha","beta","gamma","delta","epsilon","zeta","eta","theta","iota","kappa","lambda","mu","nu","xi","omicron","pi","rho","sigma","tau","upsilon","phi","chi","psi","omega","Gamma","Delta","Theta","Lambda","Xi","Pi","Sigma","Phi","Psi","Omega"]}]
+
+    {"group":"qwerty",
+	 "symbols":{
+	     "infty":{"latex":"\\infty","text":" $infinity "}}}
+
+"text":
+    {"output":{
+        "latex":"\\text{{$1}}",
+        "text":"text({$1})"},
+     "current":0,
+     "type":"text",
+     "group":"editor",
+     "attrs":[{"mode":"text"}]
+    },
+    
+    "sym_name":
+    {"output":{
+        "latex":"\\backslash\\texttt{{$1}}",
+        "text":"SYMBOL({$1})"},
+     "current":0,
+     "type":"symbol",
+     "group":"editor",
+     "attrs":[{"mode":"symbol"}]
+    },
+    
+
+    "int":
+    {"output":{
+        "latex":"\\displaystyle\\int{{$1}}d{$2}",
+        "small_latex":"\\int{{$1}}d{$2}",
+	"text":"integrate({$1},{$2})"},
+     "current":0,
+     "type":"indefinite_integral",
+     "group":"calculus",
+     "attrs":[
+	 {"delete":"1","name":"integrand"},
+	 {"delete":"1","bracket":"yes","name":"variable"}
+     ]
+    },
+    
+    "defi":
+    {"output":{
+        "latex":"\\displaystyle\\int_{{$1}}^{{$2}}{$3}d{$4}",
+        "small_latex":"\\int_{{$1}}^{{$2}}{$3}d{$4}",
+	"text":"integrate({$3},{$4},{$1},{$2})"},
+     "current":0,
+     "type":"definite_integral",
+     "group":"calculus",
+     "attrs":[
+	 {"down":"1","up":"2","small":"yes","name":"lower_limit"},
+	 {"down":"1","up":"2","small":"yes","name":"upper_limit"},
+	 {"down":"1","up":"2","delete":"3","name":"integrand"},
+	 {"down":"1","up":"2","bracket":"yes","delete":"4","name":"variable"}
+     ]
+    },
+    
+    "deriv":
+    {"output":{
+        "latex":"\\displaystyle\\frac{d}{d{$1}}{$2}",
+        "small_latex":"\\frac{d}{d{$1}}{$2}",
+	"text":"diff({$2},{$1})"},
+     "current":0,
+     "type":"derivative",
+     "group":"calculus",
+     "attrs":[
+	 {"down":"1","up":"2","bracket":"yes","name":"function"},
+	 {"down":"1","up":"2","bracket":"yes","name":"variable"}
+     ]
+    },
+        
+
+    "floor":
+    {"output":{
+        "latex":"\\lfloor{$1}\\rfloor",
+	"text":"floor({$1})"},
+     "current":0,
+     "type":"floor",
+     "group":"functions",
+     "attrs":[{"delete":"1"}]
+    },

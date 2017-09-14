@@ -77,25 +77,31 @@
 		var tab_bar = elt("ul");
 		sym_tabs.appendChild(tab_bar);
 		var grouped = {"qwerty":[]};
-		var abc = "1234567890+-=\n\tqwertyuiop*/\n\t\tasdfghjkl.\n\t\t\tzxcvbnm@!&"
+		var abc = "789+-=\n\t456/* \n\t123&@!\n\t\t\t0\t.xy^%"
 		for(var i = 0; i < abc.length; i++){
 		if(abc[i] == "\n"){
 			grouped["qwerty"].push({"break":true});
 		}
-		else if(abc[i] == "@") {
+		else if(abc[i] == "&") {
 			grouped["qwerty"].push({"name": "cos", latex: "\cos"})
 		}
-		else if(abc[i] == "!") {
+		else if(abc[i] == "@") {
 			grouped["qwerty"].push({"name": "sin", latex: "\sin"})
 		}
-		else if(abc[i] == "&") {
+		else if(abc[i] == "!") {
 			grouped["qwerty"].push({"name": "tan", latex: "\ttan"})
+		}
+		else if(abc[i] == "^") {
+			grouped["qwerty"].push({"name": "ln", latex: "\ln"})
+		}
+		else if(abc[i] == "%") {
+			grouped["qwerty"].push({"name": "log", latex: "\log"})
 		}
 		else if(abc[i] == "\t"){
 			grouped["qwerty"].push({"tab":true});
 		}
 		else if(abc[i] == "*"){
-			grouped["qwerty"].push({"name":"*","latex":"\\cdot"});
+			grouped["qwerty"].push({"name":"\\cdot","latex":"*"});
 		}
 		else if(abc[i] == "/"){
 			grouped["qwerty"].push({"name":"/","latex":"/"});
