@@ -97,9 +97,17 @@ export class AppComponent implements OnInit {
 
   // draw current equations
   drawFunctions() {
-    var data = $.map(this.system.equations, (x) => ({
-      fn: x.input.trim()
-    }));
+    var data = $.map(this.system.equations, (x) => {
+      var fn = x.input.trim();
+      var isImplicit = fn.split('=').length == 2;
+      if (isImplicit) {
+        fn = "(" + fn.split('=')[0] + ")-(" + fn.split('=')[1] + ")";
+      }
+      return {
+        fn: fn,
+        fnType: isImplicit ? 'implicit' : 'linear'
+      };
+    });
     $('#quadratic').empty();
     functionPlot({
       target: '#quadratic',
