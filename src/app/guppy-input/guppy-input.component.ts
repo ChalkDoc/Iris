@@ -11,17 +11,20 @@ var $ = (window as any).$;
 })
 export class GuppyInputComponent implements AfterViewInit {
   @ViewChild('guppyContainer') guppyContainer;
+
+  // change event is emitted every time the content of equations changes
   @Output() change = new EventEmitter();
+
+  // clickRemove event is emitted when user clicks delete button
   @Output() clickRemove = new EventEmitter();
   guppy;
-  guppyId = "guppy-input-" + Math.floor(Math.random() * 1000000);
 
- // use ngZone for changes to be detectedx
+  // use ngZone for changes to be detected
   constructor(private ngZone: NgZone) { }
 
   ngAfterViewInit() {
-    console.log(this.guppyContainer.nativeElement);
-    this.guppy = new Guppy(this.guppyId, {
+    // attach guppy editor to newly created guppy-input element
+    this.guppy = new Guppy(this.guppyContainer.nativeElement, {
       events: {
         change: () => {
           if (this.guppy) {
@@ -36,6 +39,7 @@ export class GuppyInputComponent implements AfterViewInit {
         }
       }
     });
+    // attach on-screen keyboard to newly created guppy editor
     new GuppyOSK();
   }
 
